@@ -1,0 +1,11 @@
+{
+    "[go]": {
+        "editor.insertSpaces": false,
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        }
+    },
+    "code-runner.runInTerminal": true,
+    "code-runner.customCommand": "go run ."
+}

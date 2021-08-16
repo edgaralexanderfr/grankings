@@ -1,0 +1,12 @@
+version: '3.3'
+services:
+  database:
+    image: mongo:5.0.2
+    environment:
+      MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+    ports:
+      - ${MONGO_DB_LOCAL_PORT}:27017
+    volumes:
+      - ./docker/volumes/mongo:/data/db

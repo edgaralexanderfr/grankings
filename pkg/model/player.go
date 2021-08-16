@@ -12,7 +12,11 @@ func (player *Player) GetAbbreviation() string {
 	parts := strings.Split(player.Name, " ")
 
 	for i, part := range parts {
-		parts[i] = strings.ToUpper(string(part[0]))
+		if len(part) > 0 {
+			parts[i] = strings.ToUpper(string(part[0]))
+		} else {
+			parts[i] = ""
+		}
 	}
 
 	return strings.Join(parts, "")

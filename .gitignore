@@ -14,5 +14,12 @@
 # Dependency directories (remove the comment below to include it)
 # vendor/
 
+# Repo
 .vscode/*
 !.vscode/settings.json.example
+docker/volumes/mongo/*
+!docker/volumes/mongo/.gitkeep
+.env
+.env.production
+.env.testing
+.env.development

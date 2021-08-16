@@ -7,5 +7,5 @@
         }
     },
     "code-runner.runInTerminal": true,
-    "code-runner.customCommand": "go run ."
+    "code-runner.customCommand": "clear && go run ."
 }

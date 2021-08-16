@@ -5,7 +5,7 @@ import "strings"
 type Player struct {
 	Name         string `json:"name"`
 	Abbreviation string `json:"abbreviation"`
-	Key          string `json:"key"`
+	Key          string `json:"-"`
 }
 
 func (player *Player) GetAbbreviation() string {

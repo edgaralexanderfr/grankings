@@ -2,21 +2,23 @@ package main
 
 import (
 	"fmt"
+	"log"
+	"net/http"
+	"os"
 
-	"github.com/edgaralexanderfr/grankings/pkg/model"
+	"github.com/edgaralexanderfr/grankings/pkg/route"
+	"github.com/joho/godotenv"
 )
 
 func main() {
-	score := model.Score{
-		Player: model.Player{
-			Name:         "Edgar Alexander Franco",
-			Abbreviation: "EAF",
-			Key:          "SECRET_KEY",
-		},
+	err := godotenv.Load(".env")
+
+	if err != nil {
+		log.Fatal("Couldn't open the .env file.")
 	}
 
-	fmt.Println("Grankings v0.0.1")
-	fmt.Println("")
-	fmt.Println("Top scores:")
-	fmt.Println("1. " + score.Player.Name + " - " + score.Player.GetAbbreviation())
+	appAddr := os.Getenv("APP_ADDR")
+	r := route.CreateRoutes()
+	fmt.Println("App running at " + appAddr + ".")
+	http.ListenAndServe(appAddr, r)
 }

@@ -6,7 +6,8 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/edgaralexanderfr/grankings/pkg/route"
+	"github.com/edgaralexanderfr/grankings/pkg/router"
+	"github.com/edgaralexanderfr/grankings/pkg/storage"
 	"github.com/joho/godotenv"
 )
 
@@ -18,7 +19,10 @@ func main() {
 	}
 
 	appAddr := os.Getenv("APP_ADDR")
-	r := route.CreateRoutes()
+	r := router.CreateRoutes()
+
+	storage.Init()
+	defer storage.Finish()
 	fmt.Println("App running at " + appAddr + ".")
 	http.ListenAndServe(appAddr, r)
 }

@@ -13,14 +13,10 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/readpref"
 )
 
-type collection struct {
-	games *mongo.Collection
-}
-
 var (
 	connectionCtx context.Context
 	client        *mongo.Client
-	collections   *collection = new(collection)
+	collections   map[string]*mongo.Collection = make(map[string]*mongo.Collection)
 )
 
 func Init() {
@@ -49,9 +45,12 @@ func Init() {
 		log.Fatal("Couldn't connect to " + uri)
 	}
 
-	collections.games = client.Database("grankings").Collection("games")
+	// SetTable("games")
+	// collections["games"].InsertOne(ctx, bson.D{{Key: "name", Value: "Snipe Intruders"}, {Key: "key", Value: "SECRET"}})
+}
 
-	// collections.games.InsertOne(ctx, bson.D{{Key: "name", Value: "Alex"}, {Key: "age", Value: "28"}})
+func SetTable(name string) {
+	collections[name] = client.Database(os.Getenv("MONGO_DB_CONNECTION_DB")).Collection(name)
 }
 
 func Finish() {

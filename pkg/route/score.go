@@ -13,4 +13,10 @@ func ScoreCreateRoute(r *mux.Router) {
 		Methods("GET").
 		Path("/scores").
 		Handler(http.HandlerFunc(controller.ScoreList))
+
+	r.
+		Name("ScoreCreate").
+		Methods("POST").
+		Path("/scores").
+		Handler(http.HandlerFunc(controller.ScoreCreate))
 }

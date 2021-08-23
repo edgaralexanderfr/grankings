@@ -23,6 +23,7 @@ func main() {
 
 	storage.Init()
 	defer storage.Finish()
+
 	fmt.Println("App running at " + appAddr + ".")
 	http.ListenAndServe(appAddr, r)
 }

@@ -6,6 +6,13 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
+type D []E
+
+type E struct {
+	Key   string
+	Value interface{}
+}
+
 var (
 	connectionCtx context.Context
 	client        *mongo.Client

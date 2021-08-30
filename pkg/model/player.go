@@ -5,6 +5,7 @@ import (
 )
 
 type Player struct {
+	Id           string `json:"id"`
 	Name         string `json:"name"`
 	Abbreviation string `json:"abbreviation"`
 	Key          string `json:"-"`

@@ -16,7 +16,10 @@
 
 # Repo
 .vscode/*
+!.vscode/thunder
 !.vscode/settings.json.example
+bin/*
+!bin/.gitkeep
 docker/volumes/mongo/*
 !docker/volumes/mongo/.gitkeep
 .env

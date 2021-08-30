@@ -1,26 +1,24 @@
 package controller
 
 import (
-	"encoding/json"
 	"net/http"
+	"os"
+	"strconv"
 
+	ghttp "github.com/edgaralexanderfr/grankings/pkg/http"
 	"github.com/edgaralexanderfr/grankings/pkg/model"
 )
 
 func ScoreList(w http.ResponseWriter, r *http.Request) {
-	scores := []model.Score{
-		{
-			Score: 10000,
-			Player: model.Player{
-				Name:         "Edgar Alexander Franco",
-				Abbreviation: "EAF",
-			},
-		},
+	limit, err := strconv.Atoi(os.Getenv("GET_LIST_DEFAULT_LIMIT"))
+
+	if err != nil {
+		limit = 30
 	}
 
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(scores)
+	list, _ := model.FindScores(0, limit)
+
+	ghttp.Response(w, r, list, http.StatusOK)
 }
 
 func ScoreCreate(w http.ResponseWriter, r *http.Request) {
@@ -34,7 +32,5 @@ func ScoreCreate(w http.ResponseWriter, r *http.Request) {
 
 	score.Create()
 
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusCreated)
-	json.NewEncoder(w).Encode(score)
+	ghttp.Response(w, r, score, http.StatusCreated)
 }
